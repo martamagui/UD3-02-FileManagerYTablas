@@ -18,18 +18,35 @@ class ViewController: UIViewController {
     }
     
     @IBAction func guardar(_ sender: Any) {
+        let usuario :  [String:String] = recogerDatos()
+        if(usuario.count>1){
+            print(transformarDiccionarios(usuario: usuario))
+        }
+        
+        
+    }
+    private func transformarDiccionarios(usuario:[String:String])->String{
+        var xmlUsuario : String = "<item>"
+        for i in usuario{
+            xmlUsuario.append("<\(i.key)>\(i.value)</\(i.key)>")
+        }
+        xmlUsuario.append("</item>")
+        return xmlUsuario;
+    }
+    
+    private func recogerDatos()->[String: String]{
         let nombre: String = txtNombre.text ?? ""
         let apellidos : String = txtApellidos.text ?? ""
-        //print(comprobarRutaArchivo())
         if(!(nombre == "") && !(apellidos == ""))
         {
             var persona : [String:String] = ["nombre": nombre,"apellidos":apellidos]
             listaPersonas.append(persona)
             txtNombre.text = ""
             txtApellidos.text = ""
+            return persona
         }
+        return ["fallo": "fallo"]
     }
-  
     func getRutaArchivoCompleta()-> URL{
         //Singelton de FileManager
         let fileManager = FileManager.default
