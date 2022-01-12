@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet weak var txtApellidos: UITextField!
     @IBOutlet weak var txtNombre: UITextField!
+    @IBOutlet weak var tvFeedBack: UILabel!
     var listaPersonas = [[String:String]]()
     
     override func viewDidLoad() {
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
         if(usuario){
             let user = transformarDiccionarios()
             escribirArchivo(user: user)
+            //TODO Hacer que aparezca o no el mensaje de error
         }
     }
     private func escribirArchivo(user:String){
