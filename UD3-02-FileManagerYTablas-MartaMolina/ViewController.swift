@@ -18,23 +18,36 @@ class ViewController: UIViewController {
     }
     
     @IBAction func guardar(_ sender: Any) {
-        let usuario :  [String:String] = recogerDatos()
-        if(usuario.count>1){
-            print(transformarDiccionarios(usuario: usuario))
+        let usuario : Bool = recogerDatos()
+        if(usuario){
+            let user = transformarDiccionarios()
+            escribirArchivo(user: user)
         }
-        
-        
     }
-    private func transformarDiccionarios(usuario:[String:String])->String{
-        var xmlUsuario : String = "<item>"
-        for i in usuario{
-            xmlUsuario.append("<\(i.key)>\(i.value)</\(i.key)>")
+    private func escribirArchivo(user:String){
+        do {
+            try user.write(to: getRutaArchivoCompleta(),atomically: true, encoding: .utf8)
+        } catch let error {
+            print("Error: \(error)")
         }
-        xmlUsuario.append("</item>")
+    }
+    
+    private func transformarDiccionarios()->String{
+        var xmlUsuario : String = ""
+        xmlUsuario.append("<userlist>")
+        for usuario in listaPersonas{
+            xmlUsuario.append("<item>")
+            for i in usuario{
+                xmlUsuario.append("<\(i.key)>\(i.value)</\(i.key)>")
+            }
+            xmlUsuario.append("</item>")
+        }
+        xmlUsuario.append("</userlist>")
+        print(xmlUsuario)
         return xmlUsuario;
     }
     
-    private func recogerDatos()->[String: String]{
+    private func recogerDatos()->Bool{
         let nombre: String = txtNombre.text ?? ""
         let apellidos : String = txtApellidos.text ?? ""
         if(!(nombre == "") && !(apellidos == ""))
@@ -43,13 +56,13 @@ class ViewController: UIViewController {
             listaPersonas.append(persona)
             txtNombre.text = ""
             txtApellidos.text = ""
-            return persona
+            print(listaPersonas)
+            return true
         }
-        return ["fallo": "fallo"]
+        return false
     }
-    func getRutaArchivoCompleta()-> URL{
-        //Singelton de FileManager
-        let fileManager = FileManager.default
+    
+    private func getRutaArchivoCompleta()-> URL{
         guard let ruta = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return URL(string: "")!}
         let archivoUrl = ruta.appendingPathComponent("usuarios.xml")
         return archivoUrl
