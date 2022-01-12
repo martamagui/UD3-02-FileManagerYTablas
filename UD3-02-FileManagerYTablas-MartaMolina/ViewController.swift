@@ -20,6 +20,7 @@ class ViewController: UIViewController {
     @IBAction func guardar(_ sender: Any) {
         let nombre: String = txtNombre.text ?? ""
         let apellidos : String = txtApellidos.text ?? ""
+        //print(comprobarRutaArchivo())
         if(!(nombre == "") && !(apellidos == ""))
         {
             var persona : [String:String] = ["nombre": nombre,"apellidos":apellidos]
@@ -27,6 +28,14 @@ class ViewController: UIViewController {
             txtNombre.text = ""
             txtApellidos.text = ""
         }
+    }
+  
+    func getRutaArchivoCompleta()-> URL{
+        //Singelton de FileManager
+        let fileManager = FileManager.default
+        guard let ruta = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return URL(string: "")!}
+        let archivoUrl = ruta.appendingPathComponent("usuarios.xml")
+        return archivoUrl
     }
 }
 
