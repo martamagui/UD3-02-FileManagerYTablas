@@ -45,12 +45,15 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qpc-0V-WIh">
-                                <rect key="frame" x="167" y="393" width="86" height="35"/>
+                                <rect key="frame" x="158" y="391" width="108" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Guardar">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="24"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="guardar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dzs-v3-Mcc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -73,6 +76,10 @@
                             <constraint firstItem="QBH-Cv-aVX" firstAttribute="top" secondItem="hPF-oc-rOU" secondAttribute="bottom" constant="30" id="vmd-G1-ugR"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="txtApellidos" destination="lcL-iL-phJ" id="8Fo-Uo-r7O"/>
+                        <outlet property="txtNombre" destination="QBH-Cv-aVX" id="A4h-Yx-5a8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
