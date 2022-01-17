@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     
     private func transformarDiccionarios()->String{
         var xmlUsuario : String = ""
-        xmlUsuario.append("<userlist>")
+        xmlUsuario.append(" <?xml version=\"1.0\" encoding=\"UTF-8\"?><userlist>")
         for usuario in listaPersonas{
             xmlUsuario.append("<item>")
             for i in usuario{
