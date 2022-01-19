@@ -14,6 +14,8 @@
 		877F1A3D278EE7E40031E6C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 877F1A3C278EE7E40031E6C3 /* Assets.xcassets */; };
 		877F1A40278EE7E40031E6C3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 877F1A3E278EE7E40031E6C3 /* LaunchScreen.storyboard */; };
 		87C8340C27930CB80098E684 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C8340B27930CB80098E684 /* UserListViewController.swift */; };
+		87E1780827984109001D6A38 /* TVCellUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E1780727984109001D6A38 /* TVCellUser.swift */; };
+		87E1780B279849F9001D6A38 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E1780A279849F9001D6A38 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		877F1A3F278EE7E40031E6C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		877F1A41278EE7E40031E6C3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		87C8340B27930CB80098E684 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
+		87E1780727984109001D6A38 /* TVCellUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TVCellUser.swift; path = ../../TVCellUser.swift; sourceTree = "<group>"; };
+		87E1780A279849F9001D6A38 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 		877F1A32278EE7E30031E6C3 /* UD3-02-FileManagerYTablas-MartaMolina */ = {
 			isa = PBXGroup;
 			children = (
+				87E17809279849EB001D6A38 /* model */,
 				877F1A33278EE7E30031E6C3 /* AppDelegate.swift */,
 				877F1A35278EE7E30031E6C3 /* SceneDelegate.swift */,
 				877F1A37278EE7E30031E6C3 /* ViewController.swift */,
@@ -66,8 +71,17 @@
 				877F1A3C278EE7E40031E6C3 /* Assets.xcassets */,
 				877F1A3E278EE7E40031E6C3 /* LaunchScreen.storyboard */,
 				877F1A41278EE7E40031E6C3 /* Info.plist */,
+				87E1780727984109001D6A38 /* TVCellUser.swift */,
 			);
 			path = "UD3-02-FileManagerYTablas-MartaMolina";
+			sourceTree = "<group>";
+		};
+		87E17809279849EB001D6A38 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				87E1780A279849F9001D6A38 /* Item.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +157,9 @@
 			files = (
 				877F1A38278EE7E30031E6C3 /* ViewController.swift in Sources */,
 				87C8340C27930CB80098E684 /* UserListViewController.swift in Sources */,
+				87E1780827984109001D6A38 /* TVCellUser.swift in Sources */,
 				877F1A34278EE7E30031E6C3 /* AppDelegate.swift in Sources */,
+				87E1780B279849F9001D6A38 /* Item.swift in Sources */,
 				877F1A36278EE7E30031E6C3 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -109,7 +109,7 @@
                                 <rect key="frame" x="20" y="129.5" width="374" height="732.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="OBS-Lf-7td">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="OBS-Lf-7td" customClass="TVCellUser" customModule="UD3_02_FileManagerYTablas_MartaMolina" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="374" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OBS-Lf-7td" id="6jH-h0-t0Y">
@@ -161,6 +161,10 @@
                                                 <constraint firstItem="4ho-Rh-SWq" firstAttribute="top" secondItem="6jH-h0-t0Y" secondAttribute="top" constant="10" id="wEs-qx-7nV"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblApellidos" destination="NMf-Nh-PoJ" id="DrJ-Ix-Zxz"/>
+                                            <outlet property="lblNombre" destination="Rpy-Lr-vlz" id="Egb-6H-ot6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
