@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     }
     
     private func transformarDiccionarios()->String{
-        xmlUsuario.append("<userlist>")
+
         for usuario in listaPersonas{
             xmlUsuario.append("<item>")
             for i in usuario{
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
             }
             xmlUsuario.append("</item>")
         }
-        xmlUsuario.append("</userlist>")
+        
         print(xmlUsuario)
         return xmlUsuario;
     }

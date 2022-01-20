@@ -23,26 +23,25 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
         prepararParser()
     }
     override func viewWillAppear(_ animated: Bool) {
-        prepararParser()
+        //prepararParser()
     }
     
     ////----Tabla
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemList.count
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let celda = miTabla.dequeueReusableCell(withIdentifier: "Celda") as! TVCellUser
-        
         celda.lblNombre.text = itemList[indexPath.row].nombre
         celda.lblApellidos.text = itemList[indexPath.row].apellidos
         return celda
+    }
+    
+    private func getRutaArchivoCompleta()-> URL{
+        guard let ruta = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return URL(string: "")!}
+        let archivoUrl = ruta.appendingPathComponent("usuarios.xml")
+        return archivoUrl
     }
     
     func prepararParser(){
@@ -59,28 +58,28 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
         {
             nombre = String()
             apellido = String()
+            print(itemList.count)
         }
     }
     
     
     
-//Lee cada elemento del XML y va añadiendo cada caracter a su correspondiente String
-func parser(_ parser: XMLParser, foundCharacters string: String) {
-    let caracter = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-    if !caracter.isEmpty
-    {
-        if nombreElemento == "nombre"
+    //Lee cada elemento del XML y va añadiendo cada caracter a su correspondiente String
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        let caracter = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        if !caracter.isEmpty
         {
-            nombre += caracter
-        }
-        else if nombreElemento == "apellidos"
-        {
-            apellido += caracter
+            if nombreElemento == "nombre"
+            {
+                nombre += caracter
+            }
+            else if nombreElemento == "apellidos"
+            {
+                apellido += caracter
+            }
         }
     }
-}
     func annadirElemento(){
-       
         let datosItem = Item(nombre: nombre, apellidos: apellido)
         itemList.append(datosItem)
     }
@@ -88,20 +87,21 @@ func parser(_ parser: XMLParser, foundCharacters string: String) {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         item =  itemList[indexPath.row]
     }
-/*Cuando termina el elemento una vez termina de leer cada item,
-  si coincide la categoría con la indicada en la anterior pantalla
-  lo añade a la lista de la tabla. Si no, no.
-  */
-func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-    if elementName == "item"
-    {
-        annadirElemento()
+    /*Cuando termina el elemento una vez termina de leer cada item,
+     si coincide la categoría con la indicada en la anterior pantalla
+     lo añade a la lista de la tabla. Si no, no.
+     */
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if elementName == "item"
+        {
+            annadirElemento()
+            print(itemList)
+        }
     }
-}
-    private func getRutaArchivoCompleta()-> URL{
-        guard let ruta = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return URL(string: "")!}
-        let archivoUrl = ruta.appendingPathComponent("usuarios.xml")
-        return archivoUrl
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return itemList.count
     }
+
     
 }
