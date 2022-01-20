@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtApellidos: UITextField!
     @IBOutlet weak var txtNombre: UITextField!
     @IBOutlet weak var tvFeedBack: UILabel!
+    var xmlUsuario : String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
     var listaPersonas = [[String:String]]()
     
     override func viewDidLoad() {
@@ -35,8 +36,7 @@ class ViewController: UIViewController {
     }
     
     private func transformarDiccionarios()->String{
-        var xmlUsuario : String = ""
-        xmlUsuario.append(" <?xml version=\"1.0\" encoding=\"UTF-8\"?><userlist>")
+        xmlUsuario.append("<userlist>")
         for usuario in listaPersonas{
             xmlUsuario.append("<item>")
             for i in usuario{
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
             listaPersonas.append(persona)
             txtNombre.text = ""
             txtApellidos.text = ""
-            print(listaPersonas)
+            //print(listaPersonas)
             return true
         }
         return false
