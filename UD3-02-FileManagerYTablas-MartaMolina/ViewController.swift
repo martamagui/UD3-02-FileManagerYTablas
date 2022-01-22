@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtApellidos: UITextField!
     @IBOutlet weak var txtNombre: UITextField!
     @IBOutlet weak var tvFeedBack: UILabel!
-    var xmlUsuario : String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    var xmlUsuario = String()
     var listaPersonas = [[String:String]]()
     
     override func viewDidLoad() {

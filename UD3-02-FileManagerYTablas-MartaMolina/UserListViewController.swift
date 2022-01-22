@@ -30,7 +30,7 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = miTabla.dequeueReusableCell(withIdentifier: "Celda") as! TVCellUser
         celda.lblNombre.text = itemList[indexPath.row].nombre
@@ -48,10 +48,18 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
         //Cambia el String de urlXML a Url y carga la petición en la webView
         let urlXML : String = getRutaArchivoCompleta().absoluteString
         guard let url = URL(string: urlXML) else {return}
-        guard let parser = XMLParser(contentsOf: url) else { return}
+        var xmlTexto : String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><userlist>"
+        do{
+            xmlTexto.append(try String(contentsOf: url, encoding: .utf8))
+            xmlTexto.append("</userlist>")
+            
+        }catch{}
+        let data: Data = Data(_:xmlTexto.utf8)
+        let parser: XMLParser = XMLParser(data: data)
         parser.delegate = self
         parser.parse()
     }
+    
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         nombreElemento = elementName
         if nombreElemento == "item"
@@ -102,6 +110,6 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemList.count
     }
-
+    
     
 }
