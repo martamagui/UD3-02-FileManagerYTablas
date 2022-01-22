@@ -111,5 +111,18 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
         return itemList.count
     }
     
+    //Borrar al deslizar
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let borrar =  UIContextualAction(style: .normal, title: "Borrar"){ _,_,_ in
+            
+            self.itemList.remove(at: indexPath.row)
+            //self.defaults.set(self.historial, forKey: "historial")
+            self.miTabla.deleteRows(at: [indexPath], with: .fade)
+        }
+        borrar.image = UIImage(systemName: "trash")
+        borrar.backgroundColor = UIColor(ciColor: .red)
+        return UISwipeActionsConfiguration(actions: [borrar])
+    }
+    
     
 }

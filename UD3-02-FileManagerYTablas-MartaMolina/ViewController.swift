@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tvFeedBack: UILabel!
     var xmlUsuario = String()
     var listaPersonas = [[String:String]]()
+    let fileUtilsXML = FileUtilsXML()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,31 +23,9 @@ class ViewController: UIViewController {
     @IBAction func guardar(_ sender: Any) {
         let usuario : Bool = recogerDatos()
         if(usuario){
-            let user = transformarDiccionarios()
-            escribirArchivo(user: user)
+            fileUtilsXML.pasarAlXML(listaPersonas: listaPersonas)
             //TODO Hacer que aparezca o no el mensaje de error
         }
-    }
-    private func escribirArchivo(user:String){
-        do {
-            try user.write(to: getRutaArchivoCompleta(),atomically: true, encoding: .utf8)
-        } catch let error {
-            print("Error: \(error)")
-        }
-    }
-    
-    private func transformarDiccionarios()->String{
-
-        for usuario in listaPersonas{
-            xmlUsuario.append("<item>")
-            for i in usuario{
-                xmlUsuario.append("<\(i.key)>\(i.value)</\(i.key)>")
-            }
-            xmlUsuario.append("</item>")
-        }
-        
-        print(xmlUsuario)
-        return xmlUsuario;
     }
     
     private func recogerDatos()->Bool{
@@ -62,12 +41,6 @@ class ViewController: UIViewController {
             return true
         }
         return false
-    }
-    
-    private func getRutaArchivoCompleta()-> URL{
-        guard let ruta = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return URL(string: "")!}
-        let archivoUrl = ruta.appendingPathComponent("usuarios.xml")
-        return archivoUrl
     }
 }
 
