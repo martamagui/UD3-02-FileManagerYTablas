@@ -39,8 +39,19 @@ class ViewController: UIViewController {
             txtApellidos.text = ""
             //print(listaPersonas)
             return true
+        }else{
+            tvFeedBack.text="Por favor, rellene los campos."
         }
         return false
     }
+    
+    @IBAction func campoNombre(_ sender: Any) {
+        tvFeedBack.text=""
+    }
+    @IBAction func campoApellidos(_ sender: Any) {
+        tvFeedBack.text=""
+
+    }
+    
 }
 
