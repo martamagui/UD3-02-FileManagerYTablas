@@ -10,6 +10,8 @@ import UIKit
 class UserListViewController: UITableViewController, XMLParserDelegate{
     @IBOutlet weak var miTabla: UITableView!
     
+    let fileUtilsXML = FileUtilsXML()
+    var listaPersonas = [[String:String]]()
     var itemList = [Item]()
     var parser: XMLParser = XMLParser()
     var item : Item?
@@ -17,16 +19,15 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
     var nombre = String()
     var apellido =  String()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepararParser()
     }
     override func viewWillAppear(_ animated: Bool) {
-        //prepararParser()
+        prepararParser()
+        miTabla.reloadData()
     }
     
-    ////----Tabla
+    //----Tabla
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -38,15 +39,9 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
         return celda
     }
     
-    private func getRutaArchivoCompleta()-> URL{
-        guard let ruta = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return URL(string: "")!}
-        let archivoUrl = ruta.appendingPathComponent("usuarios.xml")
-        return archivoUrl
-    }
-    
     func prepararParser(){
         //Cambia el String de urlXML a Url y carga la petición en la webView
-        let urlXML : String = getRutaArchivoCompleta().absoluteString
+        let urlXML : String = fileUtilsXML.getRutaArchivoCompleta().absoluteString
         guard let url = URL(string: urlXML) else {return}
         var xmlTexto : String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><userlist>"
         do{
@@ -64,14 +59,12 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
         nombreElemento = elementName
         if nombreElemento == "item"
         {
+            
             nombre = String()
             apellido = String()
             print(itemList.count)
         }
     }
-    
-    
-    
     //Lee cada elemento del XML y va añadiendo cada caracter a su correspondiente String
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         let caracter = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -89,6 +82,7 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
     }
     func annadirElemento(){
         let datosItem = Item(nombre: nombre, apellidos: apellido)
+        listaPersonas.append(["nombre": datosItem.nombre, "apellidos":datosItem.apellidos])
         itemList.append(datosItem)
     }
     //Segue ejecutada al pulsar sobre un elemento de la lista.
@@ -116,13 +110,13 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
         let borrar =  UIContextualAction(style: .normal, title: "Borrar"){ _,_,_ in
             
             self.itemList.remove(at: indexPath.row)
-            //self.defaults.set(self.historial, forKey: "historial")
+            self.listaPersonas.remove(at: indexPath.row)
             self.miTabla.deleteRows(at: [indexPath], with: .fade)
+            self.fileUtilsXML.pasarAlXML(listaPersonas: self.listaPersonas)
         }
         borrar.image = UIImage(systemName: "trash")
         borrar.backgroundColor = UIColor(ciColor: .red)
         return UISwipeActionsConfiguration(actions: [borrar])
     }
-    
-    
+  
 }

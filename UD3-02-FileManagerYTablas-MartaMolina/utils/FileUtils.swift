@@ -32,7 +32,7 @@ class FileUtilsXML{
             print("Error: \(error)")
         }
     }
-    private func getRutaArchivoCompleta()-> URL{
+    func getRutaArchivoCompleta()-> URL{
         guard let ruta = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return URL(string: "")!}
         let archivoUrl = ruta.appendingPathComponent("usuarios.xml")
         return archivoUrl
