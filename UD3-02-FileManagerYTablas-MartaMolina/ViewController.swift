@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var tvFeedBack: UILabel!
     var xmlUsuario = String()
     var listaPersonas = [[String:String]]()
-    let fileUtilsXML = FileUtilsXML()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +22,7 @@ class ViewController: UIViewController {
     @IBAction func guardar(_ sender: Any) {
         let usuario : Bool = recogerDatos()
         if(usuario){
-            fileUtilsXML.pasarAlXML(listaPersonas: listaPersonas)
-            //TODO Hacer que aparezca o no el mensaje de error
+            FileUtilsXML.shared.pasarAlXML(listaPersonas: listaPersonas)
         }
     }
     
@@ -50,7 +48,6 @@ class ViewController: UIViewController {
     }
     @IBAction func campoApellidos(_ sender: Any) {
         tvFeedBack.text=""
-
     }
     
 }

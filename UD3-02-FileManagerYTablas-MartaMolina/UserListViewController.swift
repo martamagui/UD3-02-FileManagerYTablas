@@ -10,7 +10,6 @@ import UIKit
 class UserListViewController: UITableViewController, XMLParserDelegate{
     @IBOutlet weak var miTabla: UITableView!
     
-    let fileUtilsXML = FileUtilsXML()
     var listaPersonas = [[String:String]]()
     var itemList = [Item]()
     var parser: XMLParser = XMLParser()
@@ -40,16 +39,7 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
     }
     
     func prepararParser(){
-        //Cambia el String de urlXML a Url y carga la petición en la webView
-        let urlXML : String = fileUtilsXML.getRutaArchivoCompleta().absoluteString
-        guard let url = URL(string: urlXML) else {return}
-        var xmlTexto : String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><userlist>"
-        do{
-            xmlTexto.append(try String(contentsOf: url, encoding: .utf8))
-            xmlTexto.append("</userlist>")
-            
-        }catch{}
-        let data: Data = Data(_:xmlTexto.utf8)
+        let data:Data = FileUtilsXML.shared.prepararParaParseo()
         let parser: XMLParser = XMLParser(data: data)
         parser.delegate = self
         parser.parse()
@@ -65,7 +55,7 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
             print(itemList.count)
         }
     }
-    //Lee cada elemento del XML y va añadiendo cada caracter a su correspondiente String
+    
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         let caracter = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         if !caracter.isEmpty
@@ -80,19 +70,17 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
             }
         }
     }
+    
     func annadirElemento(){
         let datosItem = Item(nombre: nombre, apellidos: apellido)
         listaPersonas.append(["nombre": datosItem.nombre, "apellidos":datosItem.apellidos])
         itemList.append(datosItem)
     }
-    //Segue ejecutada al pulsar sobre un elemento de la lista.
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         item =  itemList[indexPath.row]
     }
-    /*Cuando termina el elemento una vez termina de leer cada item,
-     si coincide la categoría con la indicada en la anterior pantalla
-     lo añade a la lista de la tabla. Si no, no.
-     */
+  
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "item"
         {
@@ -112,11 +100,11 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
             self.itemList.remove(at: indexPath.row)
             self.listaPersonas.remove(at: indexPath.row)
             self.miTabla.deleteRows(at: [indexPath], with: .fade)
-            self.fileUtilsXML.pasarAlXML(listaPersonas: self.listaPersonas)
+            FileUtilsXML.shared.pasarAlXML(listaPersonas: self.listaPersonas)
         }
         borrar.image = UIImage(systemName: "trash")
         borrar.backgroundColor = UIColor(ciColor: .red)
         return UISwipeActionsConfiguration(actions: [borrar])
     }
-  
+    
 }

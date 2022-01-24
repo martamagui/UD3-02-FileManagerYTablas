@@ -9,6 +9,11 @@ import Foundation
 
 class FileUtilsXML{
     
+    static var shared : FileUtilsXML {
+        let yoMismo =  FileUtilsXML()
+        return yoMismo
+    }
+    
     func pasarAlXML(listaPersonas: [[String: String]]){
         escribirArchivo(user: transformarDiccionarios(listaPersonas: listaPersonas))
     }
@@ -36,5 +41,17 @@ class FileUtilsXML{
         guard let ruta = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {return URL(string: "")!}
         let archivoUrl = ruta.appendingPathComponent("usuarios.xml")
         return archivoUrl
+    }
+    func prepararParaParseo()->Data{
+        let urlXML : String = getRutaArchivoCompleta().absoluteString
+        let url = URL(string: urlXML)!
+        var xmlTexto : String = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><userlist>"
+        do{
+            xmlTexto.append(try String(contentsOf: url, encoding: .utf8))
+            xmlTexto.append("</userlist>")
+            
+        }catch{}
+        let data: Data = Data(_:xmlTexto.utf8)
+        return data
     }
 }
