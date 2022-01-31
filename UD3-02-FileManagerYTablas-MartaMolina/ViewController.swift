@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtApellidos: UITextField!
     @IBOutlet weak var txtNombre: UITextField!
     @IBOutlet weak var tvFeedBack: UILabel!
+    @IBOutlet weak var txtNickUsuario: UITextField!
+    
     var xmlUsuario = String()
     var listaPersonas = [[String:String]]()
     
@@ -29,12 +31,15 @@ class ViewController: UIViewController {
     private func recogerDatos()->Bool{
         let nombre: String = txtNombre.text ?? ""
         let apellidos : String = txtApellidos.text ?? ""
+        let nickUsuario : String = txtNickUsuario.text ?? ""
         if(!(nombre == "") && !(apellidos == ""))
         {
-            var persona : [String:String] = ["nombre": nombre,"apellidos":apellidos]
+            var persona : [String:String] = ["nickusuario":nickUsuario,"nombre": nombre,"apellidos":apellidos]
             listaPersonas.append(persona)
             txtNombre.text = ""
             txtApellidos.text = ""
+            txtNickUsuario.text = ""
+            
             //print(listaPersonas)
             return true
         }else{

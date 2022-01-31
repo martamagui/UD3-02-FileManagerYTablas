@@ -15,6 +15,7 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
     var parser: XMLParser = XMLParser()
     var item : Item?
     var nombreElemento = String()
+    var nickusuario = String()
     var nombre = String()
     var apellido =  String()
     
@@ -33,8 +34,9 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = miTabla.dequeueReusableCell(withIdentifier: "Celda") as! TVCellUser
-        celda.lblNombre.text = itemList[indexPath.row].nombre
-        celda.lblApellidos.text = itemList[indexPath.row].apellidos
+        celda.lblNickUsuario.text = "Nick: \(itemList[indexPath.row].nickusuario)"
+        
+        celda.lblNombreApellidos.text = "Nombre: \(itemList[indexPath.row].nombre) \(itemList[indexPath.row].apellidos)"
         return celda
     }
     
@@ -49,9 +51,9 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
         nombreElemento = elementName
         if nombreElemento == "item"
         {
-            
             nombre = String()
             apellido = String()
+            nickusuario = String()
             print(itemList.count)
         }
     }
@@ -68,12 +70,16 @@ class UserListViewController: UITableViewController, XMLParserDelegate{
             {
                 apellido += caracter
             }
+            else if nombreElemento == "nickusuario"
+            {
+                nickusuario += caracter
+            }
         }
     }
     
     func annadirElemento(){
-        let datosItem = Item(nombre: nombre, apellidos: apellido)
-        listaPersonas.append(["nombre": datosItem.nombre, "apellidos":datosItem.apellidos])
+        let datosItem = Item(nombre: nombre, apellidos: apellido, nickusuario: nickusuario)
+        listaPersonas.append(["nombre": datosItem.nombre, "apellidos":datosItem.apellidos,"nickusuario":nickusuario])
         itemList.append(datosItem)
     }
     

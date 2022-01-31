@@ -10,4 +10,5 @@ import Foundation
 struct Item {
     var nombre: String
     var apellidos: String
+    var nickusuario: String
 }
