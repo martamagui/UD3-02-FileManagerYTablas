@@ -12,7 +12,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtNombre: UITextField!
     @IBOutlet weak var tvFeedBack: UILabel!
     @IBOutlet weak var txtNickUsuario: UITextField!
-    
+    @IBOutlet weak var lblnick: UILabel!
+    @IBOutlet weak var lblnombre: UILabel!
+    @IBOutlet weak var lblApellidos: UILabel!
+    @IBOutlet weak var btnGuardar: UIButton!
     //Constrainst
     @IBOutlet weak var altoLogo: NSLayoutConstraint!
     @IBOutlet weak var anchoLogo: NSLayoutConstraint!
@@ -29,10 +32,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var altoFeedBack: NSLayoutConstraint!
     @IBOutlet weak var separacionBotBtn: NSLayoutConstraint!
     
-    
-    
-    
-    
+    @IBOutlet weak var altoBtn: NSLayoutConstraint!
     var xmlUsuario = String()
     var listaPersonas = [[String:String]]()
     override func viewDidLoad() {
@@ -44,13 +44,48 @@ class ViewController: UIViewController {
         let orientation = UIDevice.current.orientation
         if orientation.isLandscape
         {
-            altoLogo.constant = 30
-            anchoLogo.constant = 30
+            altoLogo.constant = 35
+            anchoLogo.constant = 35
+            nickAlblNombre.constant = 2
+            altoNick.constant = 30
+            altoNombre.constant = 30
+            altoApellidos.constant = 30
+            altoFeedBack.constant = 0
+            altoBtn.constant = 35
+            //Izq Drch
+            nombreIzq.constant = 100
+            nombreDrch.constant = 100
+            apellidosIzq.constant = 100
+            apellidosDrch.constant = 100
+            nickUsuarioizq.constant = 100
+            nickUsuariodrch.constant = 100
+            //Font
+            lblnick.font = UIFont.systemFont(ofSize: 16.0)
+            lblnombre.font = UIFont.systemFont(ofSize: 16.0)
+            lblApellidos.font = UIFont.systemFont(ofSize: 16.0)
+            btnGuardar.titleLabel?.font = UIFont.systemFont(ofSize: 16.0)
+            
         }
         else
         {
             altoLogo.constant = 100
             anchoLogo.constant = 100
+            nickAlblNombre.constant = 10
+            altoNick.constant = 40
+            altoNombre.constant = 40
+            altoApellidos.constant = 40
+            altoBtn.constant = 40
+            nombreIzq.constant = 50
+            nombreDrch.constant = 50
+            apellidosIzq.constant = 50
+            apellidosDrch.constant = 50
+            nickUsuarioizq.constant = 50
+            nickUsuariodrch.constant = 50
+            lblnick.font = UIFont.systemFont(ofSize: 24.0)
+            lblnombre.font = UIFont.systemFont(ofSize: 24.0)
+            lblApellidos.font = UIFont.systemFont(ofSize: 24.0)
+            btnGuardar.titleLabel?.font = UIFont.systemFont(ofSize: 24.0)
+            
         }
     }
     
