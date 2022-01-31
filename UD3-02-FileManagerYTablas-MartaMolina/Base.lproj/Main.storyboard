@@ -70,7 +70,7 @@
                                 <rect key="frame" x="157" y="44" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="IAi-hp-ldf"/>
-                                    <constraint firstAttribute="width" constant="100" id="v18-MZ-bw0"/>
+                                    <constraint firstAttribute="width" constant="100" identifier="anchoLogo" id="v18-MZ-bw0"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lcL-iL-phJ">
@@ -124,6 +124,20 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="altoApellidos" destination="Hen-FD-OmW" id="ck5-7B-Xdn"/>
+                        <outlet property="altoFeedBack" destination="Ydj-TH-aVH" id="pIn-Ad-xu2"/>
+                        <outlet property="altoLogo" destination="IAi-hp-ldf" id="5aY-if-GuF"/>
+                        <outlet property="altoNick" destination="8Zz-ba-PNq" id="EyT-PU-SvO"/>
+                        <outlet property="altoNombre" destination="da7-58-hj4" id="q5I-oL-qs8"/>
+                        <outlet property="anchoLogo" destination="v18-MZ-bw0" id="TyS-IK-YeQ"/>
+                        <outlet property="apellidosDrch" destination="9qf-55-LIw" id="pAC-tw-l3U"/>
+                        <outlet property="apellidosIzq" destination="guD-F0-Llo" id="0En-Qx-xg1"/>
+                        <outlet property="nickAlblNombre" destination="JgN-YS-fpo" id="sAJ-XU-11q"/>
+                        <outlet property="nickUsuariodrch" destination="E8S-A8-1sk" id="MGK-s4-Gym"/>
+                        <outlet property="nickUsuarioizq" destination="UKC-jQ-4UZ" id="HtC-RR-C6V"/>
+                        <outlet property="nombreDrch" destination="4mF-z8-faj" id="29M-UL-dcG"/>
+                        <outlet property="nombreIzq" destination="082-Rh-I9S" id="VD5-En-bhe"/>
+                        <outlet property="separacionBotBtn" destination="7AC-bw-b5m" id="mNQ-7w-dw5"/>
                         <outlet property="tvFeedBack" destination="hXC-oU-rLa" id="3Z6-f0-jhI"/>
                         <outlet property="txtApellidos" destination="lcL-iL-phJ" id="8Fo-Uo-r7O"/>
                         <outlet property="txtNickUsuario" destination="OAA-qm-QzI" id="BNR-0f-QFc"/>
