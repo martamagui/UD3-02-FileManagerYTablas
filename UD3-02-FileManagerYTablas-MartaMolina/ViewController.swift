@@ -21,16 +21,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var anchoLogo: NSLayoutConstraint!
     @IBOutlet weak var nickUsuariodrch: NSLayoutConstraint!
     @IBOutlet weak var nickUsuarioizq: NSLayoutConstraint!
-    @IBOutlet weak var nickAlblNombre: NSLayoutConstraint!
     @IBOutlet weak var nombreIzq: NSLayoutConstraint!
     @IBOutlet weak var nombreDrch: NSLayoutConstraint!
     @IBOutlet weak var altoNick: NSLayoutConstraint!
     @IBOutlet weak var altoNombre: NSLayoutConstraint!
     @IBOutlet weak var altoApellidos: NSLayoutConstraint!
+    
+    
+    @IBOutlet weak var altoBtnListado: NSLayoutConstraint!
     @IBOutlet weak var apellidosDrch: NSLayoutConstraint!
     @IBOutlet weak var apellidosIzq: NSLayoutConstraint!
     @IBOutlet weak var altoFeedBack: NSLayoutConstraint!
     @IBOutlet weak var separacionBotBtn: NSLayoutConstraint!
+    
+    @IBOutlet weak var btnGuardarIzq: NSLayoutConstraint!
+    @IBOutlet weak var btnListadoDerecha: NSLayoutConstraint!
+    
+    @IBOutlet weak var sepracionBtnListado: NSLayoutConstraint!
     
     @IBOutlet weak var altoBtn: NSLayoutConstraint!
     var xmlUsuario = String()
@@ -44,7 +51,7 @@ class ViewController: UIViewController {
         let orientation = UIDevice.current.orientation
         if orientation.isLandscape
         {
-            if(UIScreen.main.bounds.height>800){
+            if(UIScreen.main.bounds.height>900){
                 asignarConstrintsTabletLandscape()
             }else{
                 asignarConstrintsMobileLandscape()
@@ -54,33 +61,37 @@ class ViewController: UIViewController {
         {
             altoLogo.constant = 100
             anchoLogo.constant = 100
-            nickAlblNombre.constant = 10
+            separacionBotBtn.constant = 10
+            sepracionBtnListado.constant = 10
+            sepracionBtnListado.constant = 10
             altoNick.constant = 40
             altoNombre.constant = 40
             altoApellidos.constant = 40
             altoBtn.constant = 40
+            altoBtnListado.constant = 40
             nombreIzq.constant = 50
             nombreDrch.constant = 50
             apellidosIzq.constant = 50
             apellidosDrch.constant = 50
             nickUsuarioizq.constant = 50
+            btnGuardarIzq.constant = 50
+            btnListadoDerecha.constant = 50
             nickUsuariodrch.constant = 50
+            
             lblnick.font = UIFont.systemFont(ofSize: 24.0)
             lblnombre.font = UIFont.systemFont(ofSize: 24.0)
             lblApellidos.font = UIFont.systemFont(ofSize: 24.0)
-            btnGuardar.titleLabel?.font = UIFont.systemFont(ofSize: 24.0)
-            
         }
     }
     private func asignarConstrintsMobileLandscape(){
         altoLogo.constant = 35
         anchoLogo.constant = 35
-        nickAlblNombre.constant = 2
         altoNick.constant = 30
         altoNombre.constant = 30
         altoApellidos.constant = 30
         altoFeedBack.constant = 0
         altoBtn.constant = 35
+        altoBtnListado.constant = 35
         //Izq Drch
         nombreIzq.constant = 100
         nombreDrch.constant = 100
@@ -88,23 +99,29 @@ class ViewController: UIViewController {
         apellidosDrch.constant = 100
         nickUsuarioizq.constant = 100
         nickUsuariodrch.constant = 100
+        btnGuardarIzq.constant = 100
+        btnListadoDerecha.constant = 100
+        //Separacion btn
+        separacionBotBtn.constant = 10
+       
         //Font
         lblnick.font = UIFont.systemFont(ofSize: 16.0)
         lblnombre.font = UIFont.systemFont(ofSize: 16.0)
         lblApellidos.font = UIFont.systemFont(ofSize: 16.0)
-        btnGuardar.titleLabel?.font = UIFont.systemFont(ofSize: 16.0)
+     
         
     }
     private func asignarConstrintsTabletLandscape(){
         print(UIScreen.main.bounds.height)
         altoLogo.constant = UIScreen.main.bounds.height/3
         anchoLogo.constant = UIScreen.main.bounds.height/3
-        nickAlblNombre.constant = UIScreen.main.bounds.height/80
         altoNick.constant = UIScreen.main.bounds.height/20
         altoNombre.constant =  UIScreen.main.bounds.height/20
         altoApellidos.constant =  UIScreen.main.bounds.height/20
         altoFeedBack.constant = UIScreen.main.bounds.height/20
         altoBtn.constant = UIScreen.main.bounds.height/20
+        altoBtnListado.constant = UIScreen.main.bounds.height/20
+        
         //Izq Drch
         nombreIzq.constant = UIScreen.main.bounds.height/4
         nombreDrch.constant = UIScreen.main.bounds.height/4
@@ -112,11 +129,16 @@ class ViewController: UIViewController {
         apellidosDrch.constant = UIScreen.main.bounds.height/4
         nickUsuarioizq.constant = UIScreen.main.bounds.height/4
         nickUsuariodrch.constant = UIScreen.main.bounds.height/4
+        btnGuardarIzq.constant = UIScreen.main.bounds.height/4
+        btnListadoDerecha.constant = UIScreen.main.bounds.height/4
+        //Separacion btn
+        separacionBotBtn.constant = 10
+  
         //Font
         lblnick.font = UIFont.systemFont(ofSize:  UIScreen.main.bounds.height/30)
         lblnombre.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.height/30)
         lblApellidos.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.height/30)
-        btnGuardar.titleLabel?.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.height/30)
+      
     }
     
     //Logica
