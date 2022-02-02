@@ -44,27 +44,11 @@ class ViewController: UIViewController {
         let orientation = UIDevice.current.orientation
         if orientation.isLandscape
         {
-            altoLogo.constant = 35
-            anchoLogo.constant = 35
-            nickAlblNombre.constant = 2
-            altoNick.constant = 30
-            altoNombre.constant = 30
-            altoApellidos.constant = 30
-            altoFeedBack.constant = 0
-            altoBtn.constant = 35
-            //Izq Drch
-            nombreIzq.constant = 100
-            nombreDrch.constant = 100
-            apellidosIzq.constant = 100
-            apellidosDrch.constant = 100
-            nickUsuarioizq.constant = 100
-            nickUsuariodrch.constant = 100
-            //Font
-            lblnick.font = UIFont.systemFont(ofSize: 16.0)
-            lblnombre.font = UIFont.systemFont(ofSize: 16.0)
-            lblApellidos.font = UIFont.systemFont(ofSize: 16.0)
-            btnGuardar.titleLabel?.font = UIFont.systemFont(ofSize: 16.0)
-            
+            if(UIScreen.main.bounds.height>800){
+                asignarConstrintsTabletLandscape()
+            }else{
+                asignarConstrintsMobileLandscape()
+            }
         }
         else
         {
@@ -87,6 +71,52 @@ class ViewController: UIViewController {
             btnGuardar.titleLabel?.font = UIFont.systemFont(ofSize: 24.0)
             
         }
+    }
+    private func asignarConstrintsMobileLandscape(){
+        altoLogo.constant = 35
+        anchoLogo.constant = 35
+        nickAlblNombre.constant = 2
+        altoNick.constant = 30
+        altoNombre.constant = 30
+        altoApellidos.constant = 30
+        altoFeedBack.constant = 0
+        altoBtn.constant = 35
+        //Izq Drch
+        nombreIzq.constant = 100
+        nombreDrch.constant = 100
+        apellidosIzq.constant = 100
+        apellidosDrch.constant = 100
+        nickUsuarioizq.constant = 100
+        nickUsuariodrch.constant = 100
+        //Font
+        lblnick.font = UIFont.systemFont(ofSize: 16.0)
+        lblnombre.font = UIFont.systemFont(ofSize: 16.0)
+        lblApellidos.font = UIFont.systemFont(ofSize: 16.0)
+        btnGuardar.titleLabel?.font = UIFont.systemFont(ofSize: 16.0)
+        
+    }
+    private func asignarConstrintsTabletLandscape(){
+        print(UIScreen.main.bounds.height)
+        altoLogo.constant = UIScreen.main.bounds.height/3
+        anchoLogo.constant = UIScreen.main.bounds.height/3
+        nickAlblNombre.constant = UIScreen.main.bounds.height/80
+        altoNick.constant = UIScreen.main.bounds.height/20
+        altoNombre.constant =  UIScreen.main.bounds.height/20
+        altoApellidos.constant =  UIScreen.main.bounds.height/20
+        altoFeedBack.constant = UIScreen.main.bounds.height/20
+        altoBtn.constant = UIScreen.main.bounds.height/20
+        //Izq Drch
+        nombreIzq.constant = UIScreen.main.bounds.height/4
+        nombreDrch.constant = UIScreen.main.bounds.height/4
+        apellidosIzq.constant = UIScreen.main.bounds.height/4
+        apellidosDrch.constant = UIScreen.main.bounds.height/4
+        nickUsuarioizq.constant = UIScreen.main.bounds.height/4
+        nickUsuariodrch.constant = UIScreen.main.bounds.height/4
+        //Font
+        lblnick.font = UIFont.systemFont(ofSize:  UIScreen.main.bounds.height/30)
+        lblnombre.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.height/30)
+        lblApellidos.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.height/30)
+        btnGuardar.titleLabel?.font = UIFont.systemFont(ofSize: UIScreen.main.bounds.height/30)
     }
     
     //Logica
