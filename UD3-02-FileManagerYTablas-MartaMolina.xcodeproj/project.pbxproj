@@ -32,7 +32,7 @@
 		87AECC7027A8539E004E32EC /* catcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catcat.png; sourceTree = "<group>"; };
 		87C8340B27930CB80098E684 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		87DF3AC0279C74E8003E5A9A /* FileUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtils.swift; sourceTree = "<group>"; };
-		87E1780727984109001D6A38 /* TVCellUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TVCellUser.swift; path = ../../TVCellUser.swift; sourceTree = "<group>"; };
+		87E1780727984109001D6A38 /* TVCellUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVCellUser.swift; sourceTree = "<group>"; };
 		87E1780A279849F9001D6A38 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
